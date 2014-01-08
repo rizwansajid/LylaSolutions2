@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>lyla Solution</title>
+    <title></title>
     <script type="text/javascript" src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
     <script src="js/jquery-1.8.3.js" type="text/javascript"></script>
     <script src="js/jquery-ui.js" type="text/javascript"></script>
@@ -27,10 +27,9 @@
                 if (online) {
                     // do your stuff
                 } else {
-                   // alert('You\'re Offline now...');
-                   // return false;
-                }
-            
+                    alert('You\'re Offline now...');
+                    return false;
+                }          
         });
 
     </script>
@@ -54,14 +53,14 @@
         function sendEmail(senderEmail) {
             //alert("Hello");
             var messageto = $('#txtEmailTo').val();
-            //alert("MessageTo: " + messageto);
+            alert("MessageTo: " + messageto);
             var subject = $('#txtSubject').val();
             //alert("Subject: " + subject);
             $.ajax(
 {
     type: "POST",
-    url: "http://business.2bvision.com/Vcard.asmx/Email",
-    //url: "http://localhost:1679/Vcard/Vcard.asmx/Email",
+    //url: "http://business.2bvision.com/Vcard.asmx/Email",
+    url: "http://localhost:3016/Vcard/Vcard.asmx/Email",
     data: "{'messagefrom': '" + senderEmail + "','messageto':'" + messageto + "','subject': '" + subject + "','message': '" + $('#txtMessage').val() + "'}",
     //data: "{'Mobile': '923334127753'}",
     contentType: "application/json; charset=utf-8",
@@ -115,14 +114,14 @@
     </div>
     
     <div class="input-bg" style="height:auto">
-    <input type="text" value="Message" style="border-right:1px solid #FFF; width:20%; height:230px " />
+    <input type="text" value="Message" style="border-right:1px solid #FFF; width:20%; height:200px " />
     <input type="text" id="txtMessage" 
-    style="width: 65%; height: 230px" />
+    style="width: 65%; height: 200px" />
     <!--<a href=""><img src="images/edit-icon.png" style="float:right; margin:10px;" /></a>-->
     </div>
     
-    <div class="input-bg">
-    <input type="button" id="btnSendEmail" value="Send"/>
+    <div class="input-bg" style="margin-bottom:50px !important">
+    <input type="button" id="btnSendEmail" value="Send" />
     </div>
     
 </div>
@@ -146,7 +145,6 @@
 </ul>
 </div>
 </div>
-     
 </body>
 </html>
 

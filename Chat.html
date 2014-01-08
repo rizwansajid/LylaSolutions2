@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -13,6 +13,10 @@
 
     <script type="text/javascript">
         $(document).ready(function () {
+
+            //$("#chatdiv").scrollTop($("#chatdiv")[0].scrollHeight);
+            //var objDiv = document.getElementById("#divboth");
+            //objDiv.scrollTop = objDiv.scrollHeight;
 
             var cid = $.Storage.get("ContactId");
            // alert(cid);
@@ -38,7 +42,8 @@
     </script>
 
     <script type="text/javascript">
-        function GetUserChat() {
+        //$('body').html(htmlstring);
+            function GetUserChat() {
 
             var mobile = $.Storage.get("Mobile");
 
@@ -54,7 +59,7 @@
         {
             type: "POST",
             url: "http://business.2bvision.com/Vcard.asmx/getChatBySenderandReceiverId",
-            //url: "http://localhost:1679/Vcard/Vcard.asmx/getChatBySenderandReceiverId",
+            //url: "http://localhost:3016/Vcard/Vcard.asmx/getChatBySenderandReceiverId",
             //data: "{'email': '" + $('#txtEmail').val() + "','password':'" + $('#txtPassword').val() + "'}",
             data: "{'SenderId': '" + UserId + "','ReceiverId': '" + ReceiverId + "'}",
             contentType: "application/json; charset=utf-8",
@@ -82,7 +87,7 @@
                         //$("#sendMessage").text(message);
                         if (phonenumber == mobile) {
                             // $("#sendMessage").text(message);
-                            $("#divboth").append("<div  id='" + phonenumber + "'class='sender_message'>" + '<h1>' +phonenumber +'</h1>' + '<p>' + message + '</p>' + "</div>");
+                            $("#divboth").append("<div  id='" + phonenumber + "'class='sender_message'>" + '<h1>' + phonenumber + '</h1>' + '<p>' + message + '</p>' + "</div>");
                             //alert(phonenumber);
                         }
                         else {
@@ -99,7 +104,7 @@
 
 
                 else {
-                    alert("NO Chat Exist");
+                    alert("Error");
                 }
 
             },
@@ -116,17 +121,17 @@
 
         function SendMessage() {
 
-            //alert("Enter in send chat");
+            alert("Enter in send chat");
 
             var UserId = $.Storage.get("ID");
-            //alert(UserId);
+            alert(UserId);
             var ReceiverId = $.Storage.get("RId");
-            //alert(ReceiverId);
+            alert(ReceiverId);
             var cid = $.Storage.get("ContactId");
-            //alert(cid);
+            alert(cid);
             var now = new Date();
             var date = now.getDate() + "/" + now.getMonth() + "/" + now.getFullYear();
-            //alert(date);
+            alert(date);
 
 
             $.ajax(
@@ -138,7 +143,7 @@
                          contentType: "application/json; charset=utf-8",
                          dataType: "json",
                          success: function (response, status) {
-                             alert("Send");
+                             alert("Enter in success");
                              window.location = 'Chat.html';
 
                          },
@@ -157,38 +162,55 @@
 
 </head>
 <body>
-<div class="container">
+      <div class="container">
         <div class="header">
-            <div class="header-bg"></div>
+            <div class="header-bg" style="position:fixed; top:0px; width:100%; margin-bottom:10px;"></div>
             
         </div>
+         <div class="page-heading-bg">
+            <div id="xyz" class="page-heading">Chat</div>
+            <!--<button id="my-button">POP IT UP</button>-->
+        </div>
     </div>
-    <!--<div id="sendMessage" style="float: right; margin-bottom: 30px;"></div>
-    <br />
-    <div id="receiverMessage" style="float: left; margin-bottom: 30px;"></div>
-    <br />-->
-    
-<div id="divboth"></div>
-
-<div id="divReceiver" >
-	<!--<h1>Shahzaib Idrees</h1>
-    <p>Hello How are you</p>-->
-</div>
-    <br        />
-    <div class="saperator"><br /><br /><br /><br /></div>
-   
-        <!--textarea id="txtmessage" placeholder="Click to type message..." style="width: 100%; height: 40px"></textarea>
-    <div class="input-bg">
-        <input type="button" id="btnSendMessage" value="Send" />
-    </div>-->
-
+    <div id="chatdiv" style="margin-top: 25%;"> 
+    <div id="divboth"></div>
+    </div>
+     <div class="saperator"><br /><br /><br /><br /></div>
+  
     <div class="send_messages">
 <center>
-	<input type="text" id="txtmessage" />
-    <input type="button" id="btnSendMessage" value="send" />
+	
+    <input type="text" id="txtmessage" />
+    
+    <input type="button" id="btnSendMessage" value="send" style="margin-bottom:50px;"/>
+
 </center>
 </div>
-
-
+    <div class="footer-area">
+        <ul class="footer">
+            <div style="margin-left: -3.5%;">
+                <li id="profile">
+                    <a href="Profile.html">
+                        <div class="profile-icon"></div>
+                    </a>
+                </li>
+                <li id="email">
+                    <a href="Email.html">
+                        <div class="email-icon"></div>
+                    </a>
+                </li>
+                <li id="chat">
+                    <a href="Contacts.html" class="active">
+                        <div class="chat-icon"></div>
+                    </a>
+                </li>
+                <li id="share" style="border: none">
+                    <a href="Social.html">
+                        <div class="share-icon"></div>
+                    </a>
+                </li>
+            </div>
+        </ul>
+    </div>
 </body>
 </html>
